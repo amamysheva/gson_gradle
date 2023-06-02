@@ -15,6 +15,15 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
 }
 
+jar{
+    archiveFileName = "myname.jar"
+    manifest {
+        attributes 'Main-Class': "org.gsongradle.Main"
+    }
+    from configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+
 test {
     useJUnitPlatform()
 }
